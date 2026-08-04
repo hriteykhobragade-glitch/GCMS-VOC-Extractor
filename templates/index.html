@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GCMS VOC Extractor</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>GCMS VOC Extractor</h1>
+
+        <p>Portable GCMS VOC Extraction Platform</p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Select GCMS Folder</h2>
+
+        <input
+            type="file"
+            id="folderInput"
+            webkitdirectory
+            directory
+            multiple
+        >
+
+        <p id="folderName">
+            No folder selected
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Files Detected</h2>
+
+        <div id="fileList">
+
+            No files selected.
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <button id="processBtn">
+
+            Process Samples
+
+        </button>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Processing Log</h2>
+
+        <div id="log">
+
+            Waiting...
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
