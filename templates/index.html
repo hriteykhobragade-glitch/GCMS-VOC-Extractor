@@ -5,7 +5,10 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>GCMS VOC Extractor</title>
 
@@ -19,43 +22,236 @@
 
 <body>
 
-<div class="container">
+
+<!-- =========================================================
+     APPLICATION HEADER
+========================================================== -->
+
+<header class="appbar">
+
+    <div class="appbar-inner">
 
 
-    <!-- HEADER -->
+        <div class="brand">
 
-    <div class="header">
 
-        <h1>GCMS VOC Extractor</h1>
+            <div class="brand-mark">
+                GC
+            </div>
 
-        <p>Portable GCMS VOC Extraction Platform</p>
+
+            <div class="brand-copy">
+
+                <div class="brand-title">
+                    GCMS VOC Extractor
+                </div>
+
+                <div class="brand-subtitle">
+                    Portable GCMS Analysis Platform
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="app-status">
+
+            <span class="status-light"></span>
+
+            System ready
+
+        </div>
+
+
+    </div>
+
+</header>
+
+
+<!-- =========================================================
+     MAIN PAGE
+========================================================== -->
+
+<main class="page">
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+
+        <div class="hero-left">
+
+
+            <div class="eyebrow">
+
+                <span class="eyebrow-bar"></span>
+
+                Laboratory Analysis
+
+            </div>
+
+
+            <h1>
+                GCMS VOC Extraction
+            </h1>
+
+
+            <p class="hero-description">
+
+                Upload your GCMS data, identify reference VOCs,
+                and generate a consolidated Excel results file.
+
+            </p>
+
+
+        </div>
+
 
         <a
             href="/vocs"
             target="_blank"
             rel="noopener noreferrer"
-            style="
-                display: inline-block;
-                margin-top: 15px;
-                padding: 10px 18px;
-                background: #374151;
-                color: white;
-                text-decoration: none;
-                border-radius: 6px;
-                font-weight: bold;
-            "
+            class="manage-voc-button"
         >
-            ⚙ Manage VOC List
+
+            <span class="manage-icon">
+                ⚙
+            </span>
+
+            Manage VOC List
+
+            <span class="external-icon">
+                ↗
+            </span>
+
         </a>
 
-    </div>
+
+    </section>
 
 
-    <!-- SELECT GCMS FOLDER -->
+    <!-- =====================================================
+         WORKFLOW
+    ====================================================== -->
 
-    <div class="card">
+    <section class="workflow">
 
-        <h2>Select GCMS Folder</h2>
+
+        <div class="workflow-step active">
+
+            <div class="step-number">
+                01
+            </div>
+
+            <div>
+
+                <div class="step-title">
+                    Select data
+                </div>
+
+                <div class="step-description">
+                    Choose your GCMS folder
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="workflow-line"></div>
+
+
+        <div class="workflow-step">
+
+            <div class="step-number">
+                02
+            </div>
+
+            <div>
+
+                <div class="step-title">
+                    Process
+                </div>
+
+                <div class="step-description">
+                    Extract reference VOCs
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="workflow-line"></div>
+
+
+        <div class="workflow-step">
+
+            <div class="step-number">
+                03
+            </div>
+
+            <div>
+
+                <div class="step-title">
+                    Download
+                </div>
+
+                <div class="step-description">
+                    Receive Excel results
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =====================================================
+         UPLOAD CARD
+    ====================================================== -->
+
+    <section class="card upload-card">
+
+
+        <div class="card-heading">
+
+
+            <div>
+
+                <div class="section-label">
+                    DATA INPUT
+                </div>
+
+
+                <h2>
+                    Select GCMS Folder
+                </h2>
+
+
+                <p>
+                    Choose the folder containing your GCMS
+                    Excel files. Only <strong>.xlsx</strong>
+                    files are accepted.
+                </p>
+
+            </div>
+
+
+            <div class="file-type-badge">
+                XLSX
+            </div>
+
+
+        </div>
+
+
+        <!-- Hidden native input -->
 
         <input
             type="file"
@@ -63,59 +259,259 @@
             webkitdirectory
             directory
             multiple
+            class="folder-input"
         >
 
-        <p id="folderName">
-            No folder selected
-        </p>
 
-    </div>
+        <!-- Custom upload area -->
+
+        <label
+            for="folderInput"
+            class="upload-zone"
+        >
 
 
-    <!-- FILES DETECTED -->
+            <div class="upload-icon">
 
-    <div class="card">
+                <span>
+                    ↑
+                </span>
 
-        <h2>Files Detected</h2>
+            </div>
 
-        <div id="fileList">
 
-            No files selected.
+            <div class="upload-title">
+                Choose GCMS Folder
+            </div>
+
+
+            <div class="upload-subtitle">
+                Select the folder containing your .xlsx files
+            </div>
+
+
+            <div class="upload-button">
+                Browse Folder
+            </div>
+
+
+        </label>
+
+
+        <!-- Folder status -->
+
+        <div
+            id="folderName"
+            class="folder-status"
+        >
+
+            <span class="folder-status-dot"></span>
+
+            <span class="folder-status-text">
+                No folder selected
+            </span>
 
         </div>
 
-    </div>
+
+    </section>
 
 
-    <!-- PROCESS BUTTON -->
+    <!-- =====================================================
+         FILES DETECTED
+    ====================================================== -->
 
-    <div class="card">
+    <section class="card files-card">
 
-        <button id="processBtn">
+
+        <div class="card-heading compact">
+
+
+            <div>
+
+                <div class="section-label">
+                    INPUT FILES
+                </div>
+
+
+                <h2>
+                    Files Detected
+                </h2>
+
+            </div>
+
+
+            <div
+                id="fileCount"
+                class="count-badge"
+            >
+                0 files
+            </div>
+
+
+        </div>
+
+
+        <div
+            id="fileList"
+            class="file-list"
+        >
+
+            <div class="empty-files">
+
+                <div class="empty-files-icon">
+                    —
+                </div>
+
+                <div>
+                    No files selected yet.
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =====================================================
+         PROCESS ACTION
+    ====================================================== -->
+
+    <section class="action-card">
+
+
+        <div class="action-copy">
+
+
+            <div class="section-label">
+                EXTRACTION
+            </div>
+
+
+            <h2>
+                Ready to analyze?
+            </h2>
+
+
+            <p>
+                The extractor will analyze the selected GCMS
+                files against the active VOC reference library.
+            </p>
+
+
+        </div>
+
+
+        <button
+            id="processBtn"
+            class="process-button"
+        >
+
+            <span class="process-button-icon">
+                ▶
+            </span>
 
             Process Samples
 
         </button>
 
-    </div>
+
+    </section>
 
 
-    <!-- PROCESSING LOG -->
+    <!-- =====================================================
+         PROCESSING STATUS
+    ====================================================== -->
 
-    <div class="card">
+    <section class="card processing-card">
 
-        <h2>Processing Log</h2>
 
-        <div id="log">
+        <div class="card-heading compact">
 
-            Waiting...
+
+            <div>
+
+                <div class="section-label">
+                    SYSTEM STATUS
+                </div>
+
+
+                <h2>
+                    Processing Log
+                </h2>
+
+            </div>
+
+
+            <div class="status-badge">
+
+                <span class="status-badge-dot"></span>
+
+                Ready
+
+            </div>
+
 
         </div>
 
-    </div>
+
+        <div
+            id="log"
+            class="log"
+        >
+
+            <div class="log-line">
+
+                <span class="log-dot"></span>
+
+                <span>
+                    Waiting for GCMS data...
+                </span>
+
+            </div>
+
+        </div>
 
 
-</div>
+        <div class="results-note">
+
+            <span class="results-note-icon">
+                ↓
+            </span>
+
+            Results are automatically downloaded as
+            <strong>Combined_Areas.xlsx</strong> after
+            successful extraction.
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="footer">
+
+
+        <span>
+            GCMS VOC Extractor
+        </span>
+
+
+        <span>
+            Portable GCMS Analysis Platform
+        </span>
+
+
+    </footer>
+
+
+</main>
 
 
 <script
