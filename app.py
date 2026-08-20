@@ -277,12 +277,83 @@ def download_vocs():
 @app.route("/process", methods=["POST"])
 def process():
 
-        # Clear old uploaded files
+    # =========================================================
+    # GET UPLOADED FILES
+    # =========================================================
+
+    uploaded_files = request.files.getlist("files")
+
+    if not uploaded_files:
+        return jsonify({
+            "success": False,
+            "error": "No files were uploaded. Please select a GCMS folder."
+        }), 400
+
+    # Remove empty file entries
+    uploaded_files = [
+        file
+        for file in uploaded_files
+        if file and file.filename
+    ]
+
+    if not uploaded_files:
+        return jsonify({
+            "success": False,
+            "error": "No valid files were found in the selected folder."
+        }), 400
+
+    # =========================================================
+    # VALIDATE FILE TYPES
+    # =========================================================
+
+    allowed_extensions = {".xlsx"}
+
+    invalid_files = []
+
+    for file in uploaded_files:
+
+        filename = file.filename.lower().strip()
+        extension = os.path.splitext(filename)[1]
+
+        if extension not in allowed_extensions:
+            invalid_files.append(file.filename)
+
+    # =========================================================
+    # REJECT INVALID FILES
+    # =========================================================
+
+    if invalid_files:
+
+        invalid_list = "<br>".join(invalid_files[:10])
+
+        if len(invalid_files) > 10:
+            invalid_list += (
+                f"<br>...and {len(invalid_files) - 10} more"
+            )
+
+        return jsonify({
+            "success": False,
+            "error":
+                "Unsupported file type detected."
+                "<br><br>"
+                "Only Excel (.xlsx) GCMS files are supported."
+                "<br><br>"
+                f"{invalid_list}"
+        }), 400
+
+    # =========================================================
+    # CLEAR OLD UPLOADED FILES
+    # Only after validation succeeds
+    # =========================================================
+
     if os.path.exists(UPLOAD_FOLDER):
 
         for filename in os.listdir(UPLOAD_FOLDER):
 
-            file_path = os.path.join(UPLOAD_FOLDER, filename)
+            file_path = os.path.join(
+                UPLOAD_FOLDER,
+                filename
+            )
 
             if os.path.isfile(file_path):
 
@@ -292,14 +363,23 @@ def process():
                 except PermissionError:
                     pass
 
-    os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+    os.makedirs(
+        UPLOAD_FOLDER,
+        exist_ok=True
+    )
 
-    uploaded_files = request.files.getlist("files")
+    # =========================================================
+    # VALID FILES RECEIVED
+    # =========================================================
 
-    uploaded_files = request.files.getlist("files")
+    print("\n==============================")
+    print("Receiving uploaded files...")
+    print("==============================")
 
-    if len(uploaded_files) == 0:
-        return jsonify({"error": "No files uploaded"}), 400
+    print(
+        f"Valid GCMS files received: "
+        f"{len(uploaded_files)}"
+    )
 
     print("\n===================================")
     print("Receiving uploaded files...")

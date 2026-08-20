@@ -37,31 +37,46 @@ folderInput.addEventListener("change", () => {
 });
 
 
-// ===============================
+// =========================================================
 // PROCESS BUTTON
-// ===============================
+// =========================================================
 
 processBtn.addEventListener("click", async () => {
 
     console.log("🚀 Process button clicked");
+
+
+    // =========================================================
+    // CHECK FOLDER SELECTION
+    // =========================================================
 
     if (folderInput.files.length === 0) {
 
         alert("Please choose a folder first.");
 
         return;
-
     }
+
+
+    // =========================================================
+    // PREPARE UPLOAD
+    // =========================================================
 
     log.innerHTML = "Uploading files...<br>";
 
     const formData = new FormData();
+
 
     [...folderInput.files].forEach(file => {
 
         formData.append("files", file);
 
     });
+
+
+    // =========================================================
+    // SEND FILES TO FLASK
+    // =========================================================
 
     try {
 
@@ -75,46 +90,141 @@ processBtn.addEventListener("click", async () => {
 
         });
 
-        console.log("Response status:", response.status);
+
+        console.log(
+            "Response status:",
+            response.status
+        );
+
+
+        // =====================================================
+        // HANDLE SERVER ERRORS
+        // =====================================================
 
         if (!response.ok) {
 
-            throw new Error("Server returned " + response.status);
+            let errorMessage =
+                "The server could not process the files.";
 
+
+            try {
+
+                const errorData =
+                    await response.json();
+
+
+                if (errorData.error) {
+
+                    errorMessage =
+                        errorData.error;
+
+                } else if (errorData.message) {
+
+                    errorMessage =
+                        errorData.message;
+                }
+
+
+            } catch (parseError) {
+
+                errorMessage =
+                    "Server returned error " +
+                    response.status;
+            }
+
+
+            throw new Error(errorMessage);
         }
 
-        log.innerHTML += "Running GCMS extraction...<br>";
 
-        const blob = await response.blob();
+        // =====================================================
+        // EXTRACTION STARTED
+        // =====================================================
 
-        console.log("Excel received.");
+        log.innerHTML +=
+            "Running GCMS extraction...<br>";
 
-        const url = window.URL.createObjectURL(blob);
 
-        const a = document.createElement("a");
+        console.log(
+            "GCMS extraction started."
+        );
+
+
+        // =====================================================
+        // RECEIVE EXCEL FILE
+        // =====================================================
+
+        const blob =
+            await response.blob();
+
+
+        console.log(
+            "Excel received."
+        );
+
+
+        // =====================================================
+        // CREATE DOWNLOAD
+        // =====================================================
+
+        const url =
+            window.URL.createObjectURL(blob);
+
+
+        const a =
+            document.createElement("a");
+
 
         a.href = url;
 
-        a.download = "Combined_Areas.xlsx";
+
+        a.download =
+            "Combined_Areas.xlsx";
+
 
         document.body.appendChild(a);
 
+
         a.click();
+
 
         document.body.removeChild(a);
 
+
         window.URL.revokeObjectURL(url);
 
-        log.innerHTML += "✅ Extraction complete.<br>";
-        log.innerHTML += "Downloading Combined_Areas.xlsx...";
 
-    }
+        // =====================================================
+        // SUCCESS MESSAGE
+        // =====================================================
 
-    catch (err) {
+        log.innerHTML +=
+            "✅ Extraction complete.<br>";
+
+
+        log.innerHTML +=
+            "Downloading Combined_Areas.xlsx...";
+
+
+        console.log(
+            "Extraction completed successfully."
+        );
+
+
+    } catch (err) {
+
+        // =====================================================
+        // ERROR HANDLING
+        // =====================================================
 
         console.error(err);
 
-        log.innerHTML += "<br><span style='color:red;'>❌ " + err + "</span>";
+
+        log.innerHTML +=
+            '<br><span style="color:red;">' +
+            '❌ ' +
+            err.message +
+            '</span>';
 
     }
 
