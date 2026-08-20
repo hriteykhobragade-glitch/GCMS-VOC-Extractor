@@ -2,6 +2,41 @@ import pandas as pd
 import numpy as np
 import re
 import os
+import json
+
+# ==========================================================
+# LOAD VOC REFERENCE LIST
+# ==========================================================
+
+def load_voc_reference():
+
+    reference_file = os.path.join(
+        os.path.dirname(os.path.abspath(__file__)),
+        "voc_reference.json"
+    )
+
+    with open(reference_file, "r", encoding="utf-8") as file:
+
+        data = json.load(file)
+
+    voc_reference = []
+
+    for voc in data:
+
+        if not voc.get("active", True):
+            continue
+
+        voc_reference.append(
+            (
+                voc["name"],
+                float(voc["reference_rt"]),
+                int(voc["mz"]),
+                float(voc["threshold"])
+            )
+        )
+
+    return voc_reference
+
 
 # ==========================================================
 # VOC REFERENCE LIST
@@ -212,6 +247,8 @@ def extract_peaks(filepath):
 
 def extract_vocs(peak_df):
 
+    VOC_REFERENCE = load_voc_reference()
+
     output = []
 
     detected_count = 0
@@ -393,7 +430,7 @@ def process_folder(input_folder, output_file):
 
         voc[0]
 
-        for voc in VOC_REFERENCE
+        for voc in load_voc_reference()
 
     ]
 

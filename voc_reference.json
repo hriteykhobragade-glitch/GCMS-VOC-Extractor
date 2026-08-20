@@ -1,0 +1,156 @@
+[
+    {
+        "name": "Acetone",
+        "reference_rt": 0.46,
+        "mz": 43,
+        "threshold": 0.04,
+        "active": true
+    },
+    {
+        "name": "2- Butanone",
+        "reference_rt": 1.01,
+        "mz": 43,
+        "threshold": 0.04,
+        "active": true
+    },
+    {
+        "name": "2- Pentanone",
+        "reference_rt": 1.31,
+        "mz": 43,
+        "threshold": 0.04,
+        "active": true
+    },
+    {
+        "name": "4-methyl-2-pentanone",
+        "reference_rt": 2.01,
+        "mz": 63,
+        "threshold": 0.04,
+        "active": true
+    },
+    {
+        "name": "pyrrole",
+        "reference_rt": 2.09,
+        "mz": 67,
+        "threshold": 0.04,
+        "active": true
+    },
+    {
+        "name": "Toluene",
+        "reference_rt": 2.31,
+        "mz": 91,
+        "threshold": 0.04,
+        "active": true
+    },
+    {
+        "name": "3-Hexanone",
+        "reference_rt": 2.37,
+        "mz": 71,
+        "threshold": 0.04,
+        "active": true
+    },
+    {
+        "name": "4-Heptanone",
+        "reference_rt": 4.19,
+        "mz": 71,
+        "threshold": 0.04,
+        "active": true
+    },
+    {
+        "name": "2-Heptanone",
+        "reference_rt": 4.42,
+        "mz": 58,
+        "threshold": 0.05,
+        "active": true
+    },
+    {
+        "name": "1-butene,4-isothiocyanate",
+        "reference_rt": 6.59,
+        "mz": 72,
+        "threshold": 0.04,
+        "active": true
+    },
+    {
+        "name": "2-octanone",
+        "reference_rt": 7.46,
+        "mz": 43,
+        "threshold": 0.04,
+        "active": true
+    },
+    {
+        "name": "3-Octen-2-one",
+        "reference_rt": 9.18,
+        "mz": 111,
+        "threshold": 0.04,
+        "active": true
+    },
+    {
+        "name": "2-ethylhexan-1-ol",
+        "reference_rt": 9.19,
+        "mz": 57,
+        "threshold": 0.04,
+        "active": true
+    },
+    {
+        "name": "p-cresol",
+        "reference_rt": 10.31,
+        "mz": 108,
+        "threshold": 0.04,
+        "active": true
+    },
+    {
+        "name": "3,7-Dimethylocta-1,6-dien-3-ol (Linalool)",
+        "reference_rt": 11.29,
+        "mz": 69,
+        "threshold": 0.05,
+        "active": true
+    },
+    {
+        "name": "Cyclohexanol,5-methyl-2-(1-methylethyl)",
+        "reference_rt": 13.37,
+        "mz": 81,
+        "threshold": 0.05,
+        "active": true
+    },
+    {
+        "name": "2,5,-Dimethylbenzaldehyde",
+        "reference_rt": 14.19,
+        "mz": 133,
+        "threshold": 0.04,
+        "active": true
+    },
+    {
+        "name": "Benzaldehyde,4-(1-methylethyl)-",
+        "reference_rt": 15.03,
+        "mz": 133,
+        "threshold": 0.04,
+        "active": true
+    },
+    {
+        "name": "Carvone (2-methyl-5-(prop-1-en-2-yl)cyclohex-2-en-1-one)",
+        "reference_rt": 15.1,
+        "mz": 82,
+        "threshold": 0.05,
+        "active": true
+    },
+    {
+        "name": "2-cyclohexen-1-one,3-methyl-6-(1-methylethyl)-",
+        "reference_rt": 15.25,
+        "mz": 82,
+        "threshold": 0.04,
+        "active": true
+    },
+    {
+        "name": "Propane, 1-isothiocyanato-3-(methylthio)",
+        "reference_rt": 16.24,
+        "mz": 101,
+        "threshold": 0.05,
+        "active": true
+    },
+    {
+        "name": "Erucin",
+        "reference_rt": 19.21,
+        "mz": 115,
+        "threshold": 0.07,
+        "active": true
+    }
+]

@@ -1,19 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
 
-<title>GCMS VOC Extractor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>GCMS VOC Extractor</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
 
 </head>
+
 
 <body>
 
 <div class="container">
+
+
+    <!-- HEADER -->
 
     <div class="header">
 
@@ -21,8 +30,28 @@
 
         <p>Portable GCMS VOC Extraction Platform</p>
 
+        <a
+            href="/vocs"
+            target="_blank"
+            rel="noopener noreferrer"
+            style="
+                display: inline-block;
+                margin-top: 15px;
+                padding: 10px 18px;
+                background: #374151;
+                color: white;
+                text-decoration: none;
+                border-radius: 6px;
+                font-weight: bold;
+            "
+        >
+            ⚙ Manage VOC List
+        </a>
+
     </div>
 
+
+    <!-- SELECT GCMS FOLDER -->
 
     <div class="card">
 
@@ -43,6 +72,8 @@
     </div>
 
 
+    <!-- FILES DETECTED -->
+
     <div class="card">
 
         <h2>Files Detected</h2>
@@ -56,6 +87,8 @@
     </div>
 
 
+    <!-- PROCESS BUTTON -->
+
     <div class="card">
 
         <button id="processBtn">
@@ -66,6 +99,8 @@
 
     </div>
 
+
+    <!-- PROCESSING LOG -->
 
     <div class="card">
 
@@ -79,9 +114,15 @@
 
     </div>
 
+
 </div>
 
-<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+<script
+    src="{{ url_for('static', filename='script.js') }}"
+></script>
+
 
 </body>
+
 </html>
